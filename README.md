@@ -1,0 +1,1 @@
+This app helps to calculate tuning thickness using wedge model. Simple and interactive, Use the slider to select the frequency, Enter the sand velocity and the shale velocity. The result shows immediately you are make changes
