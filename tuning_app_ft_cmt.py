@@ -73,20 +73,37 @@ with col1:
     st.subheader("Seismic Wedge Display")
     fig1, ax1 = plt.subplots(figsize=(10, 6))
     
-    # Variable Density Plot
+    # 1. Variable Density Plot (Background)
     im = ax1.imshow(traces_arr, aspect='auto', cmap='RdBu', 
                     extent=[0, n_traces, 0.2, 0], vmin=-0.5, vmax=0.5)
     
-    # Add Horizons
-    x_coords = np.arange(n_traces) + 0.5
-    top_t = np.full(n_traces, 0.05) 
-    base_t = 0.05 + (thicknesses_ms / 1000.0) 
+    # 2. Overlay Wiggles
+    # Excursion controls how wide the wiggles wave (gain)
+    excursion = 1.0 
+    t = np.linspace(0, 0.2, traces_arr.shape[0])
     
-    ax1.plot(x_coords, top_t, 'k-', linewidth=1.5, label="Top Sand")
-    ax1.plot(x_coords, base_t, 'k--', linewidth=1.5, label="Base Sand")
+    # Loop to plot every trace (or skip every nth trace with range(0, n_traces, 2))
+    for i in range(n_traces):
+        # Shift trace to be centered at i + 0.5 to match imshow pixel centers
+        trace_x = traces_arr[:, i] * excursion + (i + 0.5)
+        
+        # Plot the black line
+        ax1.plot(trace_x, t, 'k-', linewidth=0.3)
+        
+        # Optional: Fill positive lobes
+        ax1.fill_betweenx(t, (i + 0.5), trace_x, where=(trace_x > (i + 0.5)), color='k')
+    
+    # 3. Add Horizons
+    x_coords = np.arange(n_traces) + 0.5
+    top_t = np.full(n_traces, 0.05)
+    base_t = 0.05 + (thicknesses_ms / 1000.0)
+    
+    ax1.plot(x_coords, top_t, 'r-', linewidth=1.5, label="Top Sand") # Changed to Red for visibility
+    ax1.plot(x_coords, base_t, 'r--', linewidth=1.5, label="Base Sand")
     
     ax1.set_xlabel("Trace Number")
     ax1.set_ylabel("Time (s)")
+    ax1.set_xlim(0, n_traces) # Ensure graph fits exactly
     ax1.legend(loc='upper right')
     ax1.grid(False)
     ax1.set_title("Red = Negative (Soft/Decrease AI) | Blue = Positive (Hard/Increase AI)")
