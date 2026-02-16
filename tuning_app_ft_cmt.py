@@ -15,14 +15,14 @@ def calculate_rc(vp1, rho1, vp2, rho2):
 
 # --- 2. Streamlit UI Layout ---
 st.set_page_config(page_title="Seismic Tuning Wedge", layout="wide")
-st.title("🪨 Interactive Seismic Tuning Wedge Model by Felix Obere")
-
+#st.title("🪨 Interactive Seismic Tuning Wedge Model by Felix Obere")
+st.subheader("🪨 Interactive Seismic Tuning Wedge Model by Felix Obere")
 # Sidebar Controls
 st.sidebar.header("Model Parameters")
 freq = st.sidebar.slider("Frequency (Hz)", 5, 60, 25)
-vp_shale = st.sidebar.number_input("Vp Shale (m/s)", value=2500)
+vp_shale = st.sidebar.number_input("Vp Shale (m/s)", value=3200)
 rho_shale = st.sidebar.number_input("Rho Shale (g/cc)", value=2.4)
-vp_sand = st.sidebar.number_input("Vp Sand (m/s)", value=3200)
+vp_sand = st.sidebar.number_input("Vp Sand (m/s)", value=2500)
 rho_sand = st.sidebar.number_input("Rho Sand (g/cc)", value=2.2)
 
 # --- 3. The Physics Engine ---
