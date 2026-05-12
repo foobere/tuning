@@ -17,6 +17,13 @@ def calculate_rc(vp1, rho1, vp2, rho2):
 st.set_page_config(page_title="Seismic Tuning Wedge", layout="wide")
 #st.title("🪨 Interactive Seismic Tuning Wedge Model by Felix Obere")
 st.subheader("🪨 Interactive Seismic Tuning Wedge Model by Felix Obere")
+#st.subheader("Attention:  You can convert your sonic reading (us/ft) to velocity(m/s) by dividing into 304800")
+#st.subheader("Example; 147us/ft = 304800/147. That will give you 2073.46 m/s")
+#st.write("Attention:  You can convert your sonic reading (us/ft) to velocity(m/s) by dividing into 304800....")
+#st.write("Example:  147us/ft = 304800/147. That will give you 2073.46 m/s")
+st.markdown(f""" * #### Attention:  You can convert your sonic reading (us/ft) to velocity(m/s)  by dividing into 304800 ")
+ * **Example:  147us/ft = 304800/147. That will give you 2073.46 m/s** """)            
+            
 # Sidebar Controls
 st.sidebar.header("Model Parameters")
 freq = st.sidebar.slider("Frequency (Hz)", 5, 60, 25)
