@@ -26,7 +26,7 @@ st.markdown(f""" * #### Attention:  You can convert your sonic reading (us/ft) t
             
 # Sidebar Controls
 st.sidebar.header("Model Parameters")
-freq = st.sidebar.slider("Frequency (Hz)", 5, 60, 25)
+freq = st.sidebar.slider("Frequency (Hz)", 5, 60, 35)
 vp_shale = st.sidebar.number_input("Vp Shale (m/s)", value=3200)
 rho_shale = st.sidebar.number_input("Rho Shale (g/cc)", value=2.4)
 vp_sand = st.sidebar.number_input("Vp Sand (m/s)", value=2500)
@@ -86,7 +86,7 @@ with col1:
     
     # 2. Overlay Wiggles
     # Excursion controls how wide the wiggles wave (gain)
-    excursion = 1.0 
+    excursion = 5.0 
     t = np.linspace(0, 0.2, traces_arr.shape[0])
     
     # Loop to plot every trace (or skip every nth trace with range(0, n_traces, 2))
